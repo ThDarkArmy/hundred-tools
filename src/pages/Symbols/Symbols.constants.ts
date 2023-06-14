@@ -367,7 +367,8 @@ export const SymbolsObjectList = [
                 name: "Pi Symbols",
                 symbols: piSymbols,
             }
-        ]
+        ],
+        id: "math"
     },
     {
         name: "Language Symbols",
@@ -434,6 +435,10 @@ export const SymbolsObjectList = [
 
 export const contentArray = [
     {
+        name: "What is it?",
+        path: ""
+    },
+    {
       name: "Recently Used",
       path: "recent"
     },
@@ -479,20 +484,20 @@ export const contentArray = [
     },
     {
       name: "Currency Symbols",
-      path: "currencies"
+      path: "currency"
     },
-    {
-      name: "Facebook Symbols",
-      path: "facebook"
-    },
-    {
-      name: "Emoji List",
-      path: "emoji"
-    },
-    {
-      name: "Font Generator",
-      path: "font"
-    }
+    // {
+    //   name: "Facebook Symbols",
+    //   path: "facebook"
+    // },
+    // {
+    //   name: "Emoji List",
+    //   path: "emoji"
+    // },
+    // {
+    //   name: "Font Generator",
+    //   path: "font"
+    // }
   ];
   
 

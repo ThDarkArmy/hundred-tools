@@ -1,58 +1,149 @@
-import { AppBar, Box, Button, Grid, TextField, Toolbar, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { RECENTLY_USED, RECENTLY_USED_MESSAGE, SymbolsObjectList, contentArray } from './Symbols.constants';
+import { useState, useCallback } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import TextField from '@mui/material/TextField';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import SymbolList from '../../components/SymbolList/SymbolList';
+import { RECENTLY_USED, RECENTLY_USED_MESSAGE, SymbolsObjectList, contentArray } from './Symbols.constants';
+import { alpha, styled } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+
+
+const CustomInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
+  },
+  '& .MuiInputBase-input': {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.mode === 'light' ? '#F3F6F9' : '#1A2027',
+    border: '1px solid',
+    borderColor: theme.palette.mode === 'light' ? '#E0E3E7' : '#2D3843',
+    fontSize: 16,
+    width: 'auto',
+    padding: '10px 12px',
+    transition: theme.transitions.create([
+      'border-color',
+      'background-color',
+      'box-shadow',
+    ]),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
 
 const Symbols: React.FC = () => {
-  const SymbolsArray = ["What is It?", "Recently Used", "Popular Symbols", "Special Symbols", "Love Symbols", "People Symbols", "Animal Symbols", "Asterisk Symbols", "Arrow Symbols", "Graphic Symbols", "Math Symbols", "language Symbols", "Currencies Symbols", "Facebook Symbols", "Emoji List", "Font Generator"];
-
   const [savedSymbols, setSavedSymbols] = useState<string>("");
+  const [recentlyUsedSymbols, setRecentlyUsedSymbols] = useState<string>("");
+  const [currentSection, setCurrentSection] = useState<string>("popular");
 
-  const handleCopy = () => {
+  const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(savedSymbols);
-  }
+  }, [savedSymbols]);
 
-  const handleClick = (e: any) => {
-    navigator.clipboard.writeText(e.target.innerText);
-    setSavedSymbols(text => text + e.target.innerText);
-  }
+  const handleClick = useCallback(
+    (e: any) => {
+      navigator.clipboard.writeText(e.target.innerText);
+      setRecentlyUsedSymbols(text => text + e.target.innerText);
+      setSavedSymbols(text => text + e.target.innerText);
+    },
+    []
+  );
+
+  // window.addEventListener("scroll", (event) => {
+  //   console.log(window.scrollY)
+  // })
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", justifyContent: '', alignItems: "", bgcolor: "#e4e0e0" }}>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       <AppBar position='fixed' elevation={0} sx={{ bgcolor: "#fff" }}>
-        <Toolbar sx={{ pl: 1, display: "flex", justifyContent: "space-between" }}>
-          <Typography style={{ color: "blue" }}>Symbols</Typography>
-          <TextField sx={{ ml: "auto", fontSize: "50px" }} value={savedSymbols} type='text' />
-          <Button onClick={handleCopy} sx={{ ml: 5 }}>Copy</Button>
+        <Toolbar sx={{ pl: 1, display: "flex" }}>
+          <Typography style={{ color: "#0088CC", fontSize: "25px" }}>Symbols</Typography>
+          {savedSymbols && <> <TextField
+            size="small"
+            sx={{ ml: {xs: 2, sm: 16, md: 30, lg: 40}, fontSize: "50px", width: "300px", border: "1px solid silver", borderRadius: 0 }}
+            value={savedSymbols}
+            type='text'
+            onChange={(e) => setSavedSymbols(e.target.value)} />
+            <Button variant='outlined' onClick={handleCopy} sx={{ ml: 0, height: "42px", borderRadius: 0 }}>Copy</Button>
+          </>
+          }
         </Toolbar>
       </AppBar>
-      <Box sx={{ mt: 10, pl: { lg: 2, md: 2, sm: 1, xs: 1 }}}>
+      <Box sx={{ mt: 10, pl: { lg: 2, md: 2, sm: 1, xs: 1 } }}>
         <Grid spacing={3} container>
-          <Grid item xs={3} sm={3} md={2} lg={2}>
-            <Box sx={{ display: "flex", flexDirection: "column", border: "1px solid black", width: 160, pl: 2, borderRadius: 1, p: 1}}>
-              {contentArray.map(content => (
-                <a style={{textDecoration: "none"}} href={`#${content.path}`}><Typography sx={{ fontSize: "13px" }} component="a">{content.name}</Typography></a>
-              ))}
+          <Grid item xs={3} sm={3} md={3} lg={2}>
+            <Box sx={{ position: "sticky", top: 80, display: "flex", border: "1px solid silver", 
+            borderRadius: "8px", bgcolor: "white" }}>
+              <List sx={{width: "100%"}} disablePadding>
+                {contentArray.map((content, index) => (
+                  <>
+                  <ListItem
+                    sx={{ bgcolor: content.path === currentSection && "#0088CC", pl: 2, cursor: "pointer", color: content.path === currentSection? "#fff": "#0088CC",  "&: hover": {background: "#C0C0C0"} }} disablePadding key={content.name}>
+                    <ListItemText disableTypography 
+                    onClick={() => {
+                      index!==0 && setCurrentSection(content.path);
+                      const targetSection = document.getElementById(content.path);
+                      if (targetSection) {
+                        const offset = 80; // Adjust the offset value as needed
+                        const topOffset = targetSection.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({ top: topOffset - offset, behavior: 'smooth' });
+                      }
+                    }}>
+                      {content.name}
+                    </ListItemText>
+                  </ListItem>
+                  {index === 0 && <Divider sx={{ml: 2, mr: 2, height: "5px", borderBottomWidth: 2}}/>}
+                  </>
+                ))}
+              </List>
             </Box>
           </Grid>
-          <Grid item xs={9} sm={9} md={9} lg={9}>
+          <Grid item xs={8} sm={8} md={8} lg={8}>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ marginBottom: "10px" }}>
-                  <Typography variant="h6">{RECENTLY_USED}</Typography>
-                  {savedSymbols ? (
-                      <SymbolList symbols={savedSymbols.split("")} handleClick={handleClick}/>
-                  ): <Typography sx={{fontSize: "13px"}}>{RECENTLY_USED_MESSAGE}</Typography>}
-                </div>
-              {SymbolsObjectList.map(symbols => (
-                <div id={symbols.id} style={{ marginBottom: "10px", marginTop: "15px" }}>
-                  <Typography variant="h6">{symbols.name}</Typography>
-                  {symbols.symbols ? <SymbolList symbols={symbols.symbols} handleClick={handleClick}/> : (
-                    <>
-                      {symbols.children  && symbols.children.map(child => <div style={{ marginTop: "15px" }}>
-                        <Typography style={{color: "red", fontSize: "16px"}} variant="h6">{child.name}</Typography>
-                        <SymbolList symbols={child.symbols} handleClick={handleClick}/>
-                      </div>)}
-                    </>
+              <div style={{ marginBottom: "10px" }}>
+                <Typography style={{ color: "#A52A2A"}} variant="h6">{RECENTLY_USED}</Typography>
+                {recentlyUsedSymbols ? (
+                  <SymbolList symbols={recentlyUsedSymbols.split("")} handleClick={handleClick} />
+                ) : (
+                  <Typography sx={{ fontSize: "13px" }}>{RECENTLY_USED_MESSAGE}</Typography>
+                )}
+              </div>
+              {SymbolsObjectList.map((symbols, index) => (
+                <div key={symbols.id} id={symbols.id} style={{ marginBottom: "10px", marginTop: "15px" }}>
+                  <Typography  style={{ color: "#A52A2A"}} variant="h6">{symbols.name}</Typography>
+                  {symbols.symbols ? (
+                    <SymbolList symbols={symbols.symbols} handleClick={handleClick} />
+                  ) : (
+                    symbols.children &&
+                    symbols.children.map((child, index) => (
+                      <div key={index} style={{ marginTop: "15px" }}>
+                        <Typography style={{ color: "#0088CC", fontSize: "14px" }} variant="h6">{child.name}</Typography>
+                        <SymbolList symbols={child.symbols} handleClick={handleClick} />
+                      </div>
+                    ))
                   )}
                 </div>
               ))}
@@ -60,8 +151,8 @@ const Symbols: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
-    </Box >
-  )
-}
+    </Box>
+  );
+};
 
-export default Symbols
+export default Symbols;
