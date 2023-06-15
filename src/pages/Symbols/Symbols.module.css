@@ -1,0 +1,21 @@
+.ContentListItem {
+    background:  #fff;
+    padding-left: 17px;
+    cursor: pointer;
+    color: #0088CC;  
+    /* "&: hover": {background: "#C0C0C0"}  */
+}
+
+.ContentListItem:hover {
+    background: #C0C0C0;
+    color: #fff;
+}
+
+.ListContainer :first-child {
+    background-color:  #fff;
+    color: #0088CC;  
+    cursor: text;
+}
+
+/* content.path === currentSection ? "#0088CC" : */
+/* content.path === currentSection? "#fff": */

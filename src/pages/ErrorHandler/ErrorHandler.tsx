@@ -13,6 +13,7 @@ class ErrorHandler extends Component<IErrorHandlerProps, IErrorHandlerState> {
 
     public componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
         //todo: implement later
+        console.log(error, errorInfo)
     }
 
     handleGoBack = () => {
