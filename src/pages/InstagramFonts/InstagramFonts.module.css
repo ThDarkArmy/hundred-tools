@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.fancy-text {
+    color: "red";
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  display: inline-block;
+  background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

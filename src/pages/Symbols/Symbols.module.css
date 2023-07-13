@@ -1,9 +1,8 @@
 .ContentListItem {
-    background:  #fff;
+    background: #fff;
     padding-left: 17px;
     cursor: pointer;
-    color: #0088CC;  
-    /* "&: hover": {background: "#C0C0C0"}  */
+    color: #0088CC;
 }
 
 .ContentListItem:hover {
@@ -12,10 +11,87 @@
 }
 
 .ListContainer :first-child {
-    background-color:  #fff;
-    color: #0088CC;  
+    background-color: #fff;
+    color: #0088CC;
     cursor: text;
 }
+
+textarea::-webkit-scrollbar {
+    width: 0px;
+    border-radius: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(194, 173, 173, 0.3);
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: rgb(210, 206, 206);
+    outline: 1px solid rgb(134, 151, 167);
+}
+
+.TextAreaButtonContainer {
+    margin-left: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.TextArea {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+    border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px medium;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+    width: 280px;
+    height: 35px;
+}
+
+.TextArea:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+
+.CopyButton {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    padding: 0 10px;
+    background-color: rgba(46, 45, 45, 0.07);
+    border-radius: 0.25rem;
+    border: 1px solid #bbbcbe;
+    color: #585757;
+    font-size: 11px;
+    line-height: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.CopyButton:hover {
+    background-color: #c9cacb;  
+    border-color: #777778;
+
+}
+
+/* :hover {
+    background-color: #005fb2;  
+    border-color: #005fb2;
+}  */
+
+
 
 /* content.path === currentSection ? "#0088CC" : */
 /* content.path === currentSection? "#fff": */
