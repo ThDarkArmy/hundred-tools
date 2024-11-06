@@ -11,12 +11,12 @@ export const routesList: any[] = [
         description: "Facebook supports many colorful symbols, smiley and emoticons icons, includes 52 icons in chat conversation and 206 icons in facebook timeline. This is an online web tool without any software installation required. Let's write an attractive facebook status!",
         path: "/facebook-symbols"
     },
-    {
-        title: "Instagram Fonts",
-        imageUrl: "https://assets.piliapp.com/s3pxy/thumbs/instagram/fonts/thumb-100x75.jpg",
-        description: "𝕚𝕟𝕤𝕥𝕒𝕘𝕣𝕒𝕞 𝕗𝕠𝕟𝕥𝕤 <br>𝖎𝖓𝖘𝖙𝖆𝖌𝖗𝖆𝖒 𝖋𝖔𝖓𝖙𝖘 <br> 𝓲𝓷𝓼𝓽𝓪𝓰𝓻𝓪𝓶 𝓯𝓸𝓷𝓽𝓼",
-        path: "/instagram-fonts"
-    },
+    // {
+    //     title: "Instagram Fonts",
+    //     imageUrl: "https://assets.piliapp.com/s3pxy/thumbs/instagram/fonts/thumb-100x75.jpg",
+    //     description: "𝕚𝕟𝕤𝕥𝕒𝕘𝕣𝕒𝕞 𝕗𝕠𝕟𝕥𝕤 <br>𝖎𝖓𝖘𝖙𝖆𝖌𝖗𝖆𝖒 𝖋𝖔𝖓𝖙𝖘 <br> 𝓲𝓷𝓼𝓽𝓪𝓰𝓻𝓪𝓶 𝓯𝓸𝓷𝓽𝓼",
+    //     path: "/instagram-fonts"
+    // },
     {
         title: "Actual Size CM Ruler",
         imageUrl: "https://assets.piliapp.com/s3pxy/thumbs/actual-size/cm-ruler/thumb-100x75.jpg",
@@ -68,10 +68,10 @@ export const footerNavComponents: any[] = [
         title: "Facebook Symbols",
         path: "/facebook-symbols"
     },
-    {
-        title: "Instagram Fonts",
-        path: "/instagram-fonts"
-    },
+    // {
+    //     title: "Instagram Fonts",
+    //     path: "/instagram-fonts"
+    // },
     {
         title: "Actual Size CM Ruler",
         path: "/ruler/cm"

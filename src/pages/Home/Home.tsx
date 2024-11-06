@@ -6,11 +6,10 @@ import { routesList } from './Home.constant';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-
   return (
     <Container>
     <Header/>
-    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", border: "1px solid black", padding: 3, mb: 10 }}>
+    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", border: "1px solid #ccc", padding: 3, mb: 10, bgcolor: "#fff" }}>
       <Grid spacing={5} container>
         {routesList.map(d => (<Grid xs={12} sm={12} md={6} lg={6} item>
           <Card elevation={0} sx={{ display: 'flex', justifyContent: "left" }}>

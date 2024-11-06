@@ -15,6 +15,7 @@ import Footer from './components/Footer/Foooter';
 import ContactUs from "./pages/NecessaryPages/ContactUs";
 import PrivacyPolicy from './pages/NecessaryPages/PrivacyPolicy';
 import TermsOfUse from './pages/NecessaryPages/TermsOfUse';
+import AboutUs from './pages/NecessaryPages/AboutUs';
 
 const theme = createTheme({
   palette: {
@@ -51,6 +52,8 @@ const theme = createTheme({
 });
 
 // const Symbols = React.lazy(()=> import("./pages/Symbols/Symbols"))
+// import FlippingCoin from './pages/FlippingCoin/FlippingCoin';
+import FlippingCoin1 from './pages/FlippingCoin/FlippingCoin1';
 
 const App = () => {
 
@@ -68,6 +71,8 @@ const App = () => {
             <Route path="/terms-of-use" element={<TermsOfUse />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/flipping-coin" element={<FlippingCoin1 />} />
           </Routes>
           <Footer />
         </ThemeProvider>

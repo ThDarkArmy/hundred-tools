@@ -100,7 +100,7 @@ const Symbols: React.FC = () => {
   return (
     <Container sx={{ display: "flex", flexDirection: "column" }}>
       <AppBar position='fixed' elevation={1} sx={{ bgcolor: "#fff" }}>
-        <Toolbar sx={{ pl: 1, display: "flex" }}>
+        <Toolbar disableGutters sx={{ pl: 1, height: "30px" }}>
           <Typography style={{ color: "#0088CC", fontSize: "25px" }}>Symbols</Typography>
           {savedSymbols && <> <CustomInput
             size="small"
